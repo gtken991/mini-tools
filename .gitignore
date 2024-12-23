@@ -1,1 +1,67 @@
+# Here's a comprehensive .gitignore for Python projects:
+
+# Environment and IDE
+.env
+.venv/
+venv/
+ENV/
+env/
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.pytest_cache/
+htmlcov/
+
+# Logs and Databases
 *.log
+*.sqlite
+*.sqlite3
+*.db
+
+# Project specific
+config.ini
+secrets.json
+credentials.json
+token.json
+
+# Documentation
+docs/_build/
+site/
+
+# Backup files
+*.bak
+*.swp
+*~
