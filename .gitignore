@@ -65,3 +65,10 @@ site/
 *.bak
 *.swp
 *~
+
+# Config files
+config.json
+
+
+# Download files
+BV*/
