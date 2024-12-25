@@ -35,7 +35,7 @@ pip install colorlog>=6.7.0
 ## 使用方法
 
 1. 配置文件设置
-   - 打开 `config.json`
+   - 复制 `config.example.json` 为 `config.json`
    - 填入你的B站cookie（从浏览器开发者工具中获取）
 
 2. 运行示例：
