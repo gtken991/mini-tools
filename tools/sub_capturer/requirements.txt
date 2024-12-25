@@ -1,0 +1,8 @@
+# Core Dependencies
+requests>=2.31.0
+aiohttp>=3.9.1
+aiohttp-retry>=2.8.3
+tenacity>=8.2.3
+
+# Optional Dependencies
+colorlog>=6.7.0
