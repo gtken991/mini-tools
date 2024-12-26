@@ -1,0 +1,34 @@
+{
+    "input_directory": "./audio",
+    "output_directory": "./transcripts",
+    "model_directory": "./models",
+    "api_settings": {
+        "provider": "local",
+        "credentials": {
+            "google": {
+                "credentials_file": "",
+                "language": "en-US"
+            },
+            "whisper": {
+                "model": "base",
+                "language": "fr",
+                "update_model": false
+            }
+        }
+    },
+    "file_types": [
+        ".wav",
+        ".mp3",
+        ".m4a",
+        ".flac",
+        ".ogg"
+    ],
+    "output_format": {
+        "type": "txt",
+        "timestamp": true
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "speech_to_text.log"
+    }
+} 

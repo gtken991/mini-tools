@@ -67,8 +67,25 @@ site/
 *~
 
 # Config files
-config.json
-
+# Ignore all config.json files in any directory
+**/config.json
 
 # Download files
 BV*/
+
+# Audio files
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.ogg
+
+# Models
+**/models/
+
+# Temp files
+**/temp/
+
+# Audio files
+**/audio/
++ /transcripts/

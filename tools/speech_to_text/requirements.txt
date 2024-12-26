@@ -1,0 +1,13 @@
+# Core Dependencies
+SpeechRecognition>=3.10.0
+pocketsphinx>=0.1.15
+pydub>=0.25.1
+ffmpeg-python>=0.2.0
+sounddevice>=0.4.6
+numpy>=1.24.0
+requests>=2.31.0
+soundfile>=0.12.1
+
+# Optional API Dependencies
+google-cloud-speech>=2.21.0
+openai-whisper>=20240124

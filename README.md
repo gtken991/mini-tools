@@ -1,6 +1,11 @@
 # python-mini-tools
 What's Inside? A collection of Python tools that make your life easier, or at least more interesting!  I hope to reach the magic number of 100 - join the journey!
 
+实现几个python小工具，方便生活。希望能到100个   
+
+
+
+
 
 
 
@@ -65,5 +70,13 @@ Bilibili Subtitle Downloader
    - Convert to SRT format
    - Support both short and full URLs
    - [Details](tools/sub_capturer/README.md)
+
+2. 语音转文字工具
+Speech to Text Converter
+   - Convert audio files to text
+   - Support multiple engines (local/cloud)
+   - Multiple format support
+   - [Details](tools/speech_to_text/README.md)
+
 
 [More tools coming soon...]
