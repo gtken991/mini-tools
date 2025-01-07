@@ -1,0 +1,5 @@
+# Core Dependencies
+pillow>=10.1.0  # 图片处理
+fastapi>=0.104.1  # API 框架
+uvicorn>=0.24.0  # ASGI 服务器
+python-multipart>=0.0.6  # 文件上传支持 

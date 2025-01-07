@@ -88,4 +88,13 @@ BV*/
 
 # Audio files
 **/audio/
-+ /transcripts/
+/transcripts/
+
+# Tarot Reader specific
+tools/tarot_reader/frontend/node_modules/
+tools/tarot_reader/frontend/dist/
+tools/tarot_reader/frontend/.env
+tools/tarot_reader/frontend/.env.*
+!tools/tarot_reader/frontend/.env.example
+tools/tarot_reader/frontend/public/images/cards/*
+!tools/tarot_reader/frontend/public/images/cards/card_back.jpg

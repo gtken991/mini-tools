@@ -78,5 +78,13 @@ Speech to Text Converter
    - Multiple format support
    - [Details](tools/speech_to_text/README.md)
 
+3. 塔罗牌阅读器
+Tarot Card Reader
+   - Modern web interface with React
+   - Multiple spread layouts support
+   - Automatic card image download
+   - Detailed card interpretation
+   - [Details](tools/tarot_reader/README.md)
+
 
 [More tools coming soon...]
