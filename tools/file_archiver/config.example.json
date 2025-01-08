@@ -1,0 +1,30 @@
+{
+    "source_directories": [
+        "~/Documents"
+    ],
+    "target_directory": "~/Documents/Archived_Files",
+    "organization": {
+        "by_date": true,
+        "remove_duplicates": true
+    },
+    "file_types": {
+        "images": [".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp"],
+        "documents": [".pdf", ".docx", ".doc", ".xlsx", ".pptx", ".txt", ".md"],
+        "videos": [".mp4", ".mov", ".mkv", ".avi", ".wmv"],
+        "audio": [".mp3", ".wav", ".m4a", ".flac", ".ogg"],
+        "archives": [".zip", ".rar", ".7z", ".tar.gz", ".gz"],
+        "code": [".py", ".js", ".java", ".cpp", ".html", ".css", ".json"]
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "./logs/file_archiver.log"
+    },
+    "backup": {
+        "enabled": true,
+        "keep_original": true,
+        "verify_copy": true
+    },
+    "processing": {
+        "skip_hidden_files": true
+    }
+} 

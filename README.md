@@ -86,5 +86,13 @@ Tarot Card Reader
    - Detailed card interpretation
    - [Details](tools/tarot_reader/README.md)
 
+4. 文件归档工具
+File Archiver
+   - Organize files by type and date
+   - Automatic file deduplication with MD5 hash
+   - File integrity verification
+   - Support multiple source directories
+   - Configurable backup options
+   - [Details](tools/file_archiver/README.md)
 
 [More tools coming soon...]
