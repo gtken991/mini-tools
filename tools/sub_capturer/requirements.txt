@@ -1,8 +1,17 @@
-# Core Dependencies
+# Network Dependencies
 requests>=2.31.0
 aiohttp>=3.9.1
 aiohttp-retry>=2.8.3
+
+# Retry and Error Handling
 tenacity>=8.2.3
 
-# Optional Dependencies
+# Logging
 colorlog>=6.7.0
+
+# Type Hints and Data Structures
+dataclasses>=0.6; python_version < '3.7'
+typing-extensions>=4.7.1
+
+# Date and Time
+python-dateutil>=2.8.2

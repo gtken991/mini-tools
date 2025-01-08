@@ -17,20 +17,17 @@
 - pip 21.2.4+
 
 ## 安装依赖
-pip install requests>=2.31.0
 
-pip install aiohttp>=3.9.1
+```bash
+# 基本安装
+pip install -r requirements.txt
 
-pip install aiohttp-retry>=2.8.3
+# 如果遇到权限问题，Windows 用户可以：
+pip install -r requirements.txt --user
 
-pip install tenacity>=8.2.3
-
-pip install typing-extensions>=4.7.1
-
-pip install python-dateutil>=2.8.2
-
-pip install colorlog>=6.7.0
-
+# 如果遇到权限问题，Linux/MacOS 用户可以：
+sudo pip install -r requirements.txt
+```
 
 ## 使用方法
 
