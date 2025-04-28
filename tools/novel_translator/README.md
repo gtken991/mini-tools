@@ -60,15 +60,15 @@ python -m tools.novel_translator.src.cli novel.txt -s zh -t en -e openai -o epub
 
 ### 非编程用户
 
-从[发布页面](https://github.com/yourusername/novel-translator/releases)下载最新版本的预编译可执行文件。
+从[发布页面](https://github.com/gtken991/mini-tools/releases)下载最新版本的预编译可执行文件。
 
 ### 开发者
 
 克隆代码库并安装依赖：
 
 ```bash
-git clone https://github.com/yourusername/novel-translator.git
-cd novel-translator
+git clone https://github.com/gtken991/mini-tools.git
+cd mini-tools
 pip install -r requirements.txt
 ```
 
