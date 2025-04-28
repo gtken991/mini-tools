@@ -1,0 +1,39 @@
+{
+    "default_engine": "caiyun",
+    "source_language": "zh",
+    "target_language": "en",
+    "batch_size": 1000,
+    "timeout": 30,
+    "retry_times": 3,
+    "output_format": "txt",
+    "parallel_requests": 3,
+    "save_interval": 1,
+    
+    "openai": {
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.3,
+        "context_size": 3,
+        "system_prompt": "你是一个专业的小说翻译器，请将以下文本翻译成{target_language}，保持原文的风格、情感和文学性。请保留原文的段落结构。"
+    },
+    
+    "caiyun": {
+        "url": "http://api.interpreter.caiyunai.com/v1/translator",
+        "direction": "auto",
+        "request_interval": 0.5
+    },
+    
+    "deepl": {
+        "free_api": false,
+        "formality": "default"
+    },
+    
+    "cache_dir": "cache",
+    "log_dir": "logs",
+    "output_dir": "output",
+    
+    "preserve_format": true,
+    "bilingual_output": false,
+    "glossary_file": "",
+    "budget_limit": 0,
+    "debug_mode": false
+} 

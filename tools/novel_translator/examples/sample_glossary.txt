@@ -1,0 +1,49 @@
+# 小说翻译术语表示例
+# 格式：原文词语=译文词语
+
+# 人物名
+张三=Zhang San
+李四=Li Si
+王五=Wang Wu
+赵六=Zhao Liu
+
+# 地名
+洛阳=Luoyang
+长安=Chang'an
+江南=Jiangnan
+岭南=Lingnan
+东海=East Sea
+西山=West Mountain
+
+# 门派/组织
+青云门=Qingyun Sect
+正一教=Zhengyi Dao
+武当派=Wudang Sect
+少林寺=Shaolin Temple
+魔教=Demonic Cult
+
+# 功法/武器
+九阳神功=Nine Suns Divine Technique
+太极剑法=Taiji Sword Technique
+降龙十八掌=Eighteen Dragon Subduing Palms
+玄铁剑=Dark Iron Sword
+倚天剑=Heaven Reliant Sword
+屠龙刀=Dragon Slaying Blade
+
+# 特殊称谓
+道长=Daoist Master
+师父=Master
+师兄=Senior Brother
+师妹=Junior Sister
+掌门=Sect Leader
+宗主=Patriarch
+散仙=Wandering Immortal
+
+# 修仙/武侠术语
+内力=Internal Energy
+真气=Qi
+修为=Cultivation Level
+筑基=Foundation Establishment
+结丹=Core Formation
+元婴=Nascent Soul
+化神=Spirit Transformation 
