@@ -101,3 +101,38 @@ tools/tarot_reader/frontend/public/images/cards/*
 
 venv_py311/
 .venv_py311/
+
+# History
+.history/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment
+.env.local
+.env.*.local
+
+# OS
+Thumbs.db
+
+# Logs
+logs/
+
+# Build
+out/
+
+# Test
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
