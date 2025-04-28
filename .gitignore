@@ -98,3 +98,6 @@ tools/tarot_reader/frontend/.env.*
 !tools/tarot_reader/frontend/.env.example
 tools/tarot_reader/frontend/public/images/cards/*
 !tools/tarot_reader/frontend/public/images/cards/card_back.jpg
+
+venv_py311/
+.venv_py311/
