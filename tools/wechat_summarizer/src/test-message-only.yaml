@@ -1,0 +1,108 @@
+# 测试专用配置文件 - 只启用消息获取和记录功能
+
+# 微信相关配置
+wechat:
+  # 需要监控的微信群名称列表
+  groupNames:
+    - "测试群1"
+    - "测试群2"
+  # 触发总结的关键词
+  triggerKeywords:
+    - "总结一下"
+    - "帮忙总结"
+    - "请总结"
+  # 是否监控所有消息（包括不含关键词的消息）
+  monitorAllMessages: true
+  # 总结发送方式
+  summaryDelivery:
+    # 是否将总结发送到原群聊
+    sendToGroup: true
+    # 是否将总结私聊发送给触发者
+    sendToTriggerUser: false
+
+# 功能模块控制
+modules:
+  # 微信MCP客户端模块
+  mcpClient:
+    enabled: true
+    # MCP服务地址
+    host: "127.0.0.1"
+    port: 19088
+    # 样本展示的消息数量
+    sampleMessageCount: 3
+    # 连接重试次数
+    retryCount: 3
+    # 重试间隔（毫秒）
+    retryInterval: 5000
+    # 心跳检查间隔（毫秒）
+    heartbeatInterval: 30000
+  
+  # 消息记录模块
+  messageRecording:
+    enabled: true
+    # 自动清理策略
+    autoCleanup:
+      enabled: true
+      # 保留消息的天数
+      keepDays: 30
+      # 清理时间（每天几点执行清理）- 24小时制
+      cleanupHour: 3
+      # 是否在启动时执行一次清理
+      cleanupOnStartup: false
+  
+  # AI总结模块 - 在测试中禁用
+  aiSummary:
+    enabled: false
+    # 总结触发方式
+    trigger:
+      # 是否在关键词触发时生成总结
+      onKeyword: false
+      # 是否定时生成总结（每天）
+      scheduled: false
+      # 定时总结的时间点（24小时制）
+      scheduledHour: 23
+      scheduledMinute: 30
+    # 总结的时间范围
+    timeRange:
+      # 默认包含多少小时内的消息
+      defaultHours: 24
+      # 最多包含多少小时内的消息
+      maxHours: 72
+      # 最少包含多少条消息才生成总结
+      minMessageCount: 5
+    # AI提供商设置
+    provider:
+      type: "openai"
+      model: "gpt-3.5-turbo-1106"
+      temperature: 0.7
+      maxResponseTokens: 1500
+      apiKey: ""
+      baseUrl: "https://api.openai.com/v1"
+
+# 存储设置
+storage:
+  # 基础存储路径
+  basePath: "./data"
+  # 消息存储目录
+  messageDir: "messages"
+  # 总结存储目录
+  summaryDir: "summaries"
+  # 日志存储目录
+  logDir: "logs"
+
+# 日志设置
+logging:
+  # 日志级别: debug, info, warn, error
+  level: "info"
+  # 是否在控制台输出
+  console: true
+  # 是否保存到文件
+  file: true
+  # 日志文件最大大小（MB）
+  maxFileSize: 10
+  # 保留的日志文件数量
+  maxFiles: 5
+  # 是否记录调试信息
+  debug: true
+  # 是否使用彩色输出
+  colorized: true 

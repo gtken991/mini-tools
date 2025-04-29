@@ -1,0 +1,65 @@
+# 微信聊天记录获取测试配置文件
+# 此配置仅启用消息记录和MCP客户端功能，禁用AI总结
+
+# 存储配置
+storage:
+  basePath: "./data"                  # 数据存储的基础路径
+  messageDir: "messages"              # 消息存储目录
+  summaryDir: "summaries"             # 总结存储目录
+  logsDir: "logs"                     # 日志存储目录
+  detailedLogsDir: "detailed_logs"    # 详细日志存储目录
+  exportFormats: ["json"]             # 仅支持JSON格式导出
+
+# 功能模块配置
+modules:
+  # 消息记录模块 - 启用
+  messageRecording:
+    enabled: true                     # 启用消息记录功能
+    saveRawMessage: true              # 保存原始消息格式
+
+  # MCP客户端模块 - 启用
+  mcpClient:
+    enabled: true                     # 启用MCP客户端
+    autoReconnect: true               # 断开连接后自动重连
+    maxReconnectAttempts: 5           # 最大重连次数
+    logMessageContent: true           # 记录消息内容
+    monitoringActive: true            # 监控活跃状态
+    showSampleMessages: true          # 显示样例消息
+    sampleMessageCount: 10            # 显示10条样例消息
+  
+  # AI总结模块 - 禁用
+  aiSummary:
+    enabled: false                    # 禁用AI总结
+    cursorApiKey: ""                  # 无需API密钥
+    cursorApiUrl: ""                  # 无需API URL
+    summaryInterval: 0                # 不进行定时总结
+    summaryPrompt: ""                 # 不需要提示词
+    maxMessagesPerSummary: 0          # 无需设置消息数量限制
+
+# 日志配置
+logging:
+  level: "debug"                      # 使用调试级别的日志
+  detailed: true                      # 开启详细日志
+  stageLogging: true                  # 记录阶段状态
+  consoleOutput: true                 # 输出到控制台
+  fileOutput: true                    # 输出到文件
+
+# 微信MCP配置
+wechat:
+  mcpWsPort: 19099                    # MCP WebSocket端口
+  mcpApiHost: "http://localhost:19088" # MCP API主机地址
+  groupNames:                         # 要监听的群名列表
+    - "测试群1"
+    - "测试群2"
+  historyMsgCount: 50                 # 获取历史消息的数量
+
+# 关键词监控配置
+keywords:
+  enabled: true                       # 启用关键词监控
+  words:                              # 关键词列表
+    - "重要"
+    - "紧急"
+    - "会议"
+    - "测试"
+  notificationEnabled: true           # 启用关键词通知
+  highlightInSummary: false           # 不在总结中高亮关键词 

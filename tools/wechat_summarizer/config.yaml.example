@@ -1,0 +1,72 @@
+# 微信聊天记录总结工具配置文件示例
+# 复制此文件为config.yaml并根据需要修改
+
+# 存储配置
+storage:
+  basePath: "./data"                  # 数据存储的基础路径
+  messageDir: "messages"              # 消息存储目录
+  summaryDir: "summaries"             # 总结存储目录
+  logsDir: "logs"                     # 日志存储目录
+  detailedLogsDir: "detailed_logs"    # 详细日志存储目录
+  exportFormats: ["json", "txt", "md"] # 支持的导出格式
+
+# 功能模块配置
+modules:
+  # 消息记录模块
+  messageRecording:
+    enabled: true                     # 是否启用消息记录功能
+    saveRawMessage: true              # 是否保存原始消息格式
+
+  # MCP客户端模块
+  mcpClient:
+    enabled: true                     # 是否启用MCP客户端
+    autoReconnect: true               # 断开连接后是否自动重连
+    maxReconnectAttempts: 10          # 最大重连次数
+    logMessageContent: false          # 是否记录消息内容
+    monitoringActive: true            # 是否监控活跃状态
+    showSampleMessages: true          # 是否显示样例消息(用于验证连接)
+    sampleMessageCount: 5             # 显示的样例消息数量
+  
+  # AI总结模块
+  aiSummary:
+    enabled: true                     # 是否启用AI总结
+    cursorApiKey: "your-cursor-api-key" # Cursor API密钥
+    cursorApiUrl: "https://api.cursor.sh/v1/chat/completions" # Cursor API URL
+    summaryInterval: 60               # 总结间隔(分钟)
+    summaryPrompt: |
+      请总结以下微信群聊消息，重点提取有价值的信息和讨论要点：
+      
+      {{messages}}
+      
+      请以简洁的方式组织信息，并突出重要内容。
+    maxMessagesPerSummary: 200        # 每次总结最大消息数
+
+# 日志配置
+logging:
+  level: "info"                       # 日志等级: debug | info | warn | error
+  detailed: true                      # 是否开启详细日志
+  stageLogging: true                  # 是否记录阶段状态
+  consoleOutput: true                 # 是否输出到控制台
+  fileOutput: true                    # 是否输出到文件
+
+# 微信MCP配置
+wechat:
+  mcpWsPort: 19099                    # MCP WebSocket端口
+  mcpApiHost: "http://localhost:19088"  # MCP API主机地址
+  groupNames:                         # 要监听的群名列表
+    - "项目讨论组"
+    - "技术交流群"
+  historyMsgCount: 100                # 初始化时获取的历史消息数量
+
+# 关键词监控配置
+keywords:
+  enabled: true                       # 是否启用关键词监控
+  words:                              # 关键词列表
+    - "重要"
+    - "紧急"
+    - "会议"
+    - "截止日期"
+    - "任务"
+    - "报告"
+  notificationEnabled: true           # 是否启用关键词通知
+  highlightInSummary: true            # 在总结中高亮关键词 
