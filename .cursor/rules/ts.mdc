@@ -1,0 +1,169 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: MCP Development Guide with Node.js, Nest.js, and TypeScript
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/tsconfig.json"
+  - "**/package.json"
+  - "**/*.md"
+  - "**/*.yaml"
+alwaysApply: false
+---
+
+# MCP Development Guide with Node.js, Nest.js, and TypeScript
+
+## Key Principles
+- Use TypeScript for type safety and better development experience
+- Follow a modular architecture with clear separation of concerns
+- Implement clean code practices with meaningful variable and function names
+- Use async/await for handling asynchronous operations
+- Leverage functional programming where appropriate
+- Implement comprehensive error handling and logging
+
+## TypeScript Best Practices
+- Use strict type checking with `"strict": true` in tsconfig.json
+- Prefer interfaces for object shapes and types for unions/primitives
+- Use proper typing for functions, parameters, and return values
+- Leverage TypeScript's utility types (Partial, Pick, Omit, etc.)
+- Use enums for fixed sets of values
+- Create reusable type definitions in dedicated files
+
+## Node.js Development
+- Use the latest LTS version of Node.js
+- Implement proper error handling with try/catch blocks
+- Use environment variables for configuration (dotenv)
+- Implement logging with structured formats (winston/pino)
+- Use proper stream handling for file operations
+- Implement graceful shutdown handlers for process termination
+
+## Configuration Management
+- **Environment Variables:** Use environment variables (via `.env` files and libraries like `dotenv`) for sensitive information (API keys, passwords) and environment selectors (e.g., `NODE_ENV=development`). **Do not commit `.env` files to version control.**
+- **Configuration Files:** Use configuration files (e.g., YAML, JSON) for non-sensitive settings. Structure configuration logically (e.g., by module).
+- **Environment-Specific Config:** Support environment-specific configuration files (e.g., `config.base.yaml`, `config.development.yaml`, `config.production.yaml`) that override base settings. Implement a loading mechanism that merges these appropriately based on `NODE_ENV`.
+- **Test Configuration:** Provide dedicated configuration files for testing (e.g., `config.test.yaml`) to isolate test runs and use mock data or specific test settings. Ensure test scripts load this configuration.
+- **Validation:** Validate loaded configuration at startup to catch errors early.
+
+## State Management
+- **Simplicity First:** For many backend services, state is managed implicitly within request lifecycles or service instances. Keep state management simple where possible.
+- **Explicit State:** If complex application state needs to be managed across requests or modules (e.g., caching, connection pools, application status), encapsulate it within dedicated services or classes.
+- **Concurrency:** Be mindful of concurrency issues when managing shared state. Use appropriate synchronization mechanisms if necessary.
+- **Testing Stateful Components:** Design stateful components to be testable. This might involve providing methods to reset state, inject mock state, or observe state changes during tests. Consider state machines for managing complex state transitions.
+
+## Nest.js Architecture
+- Use modules to organize code into cohesive units
+- Implement providers as services for business logic
+- Use controllers to handle HTTP requests
+- Leverage dependency injection for loose coupling
+- Use pipes for input validation and transformation
+- Implement guards for authentication and authorization
+- Use interceptors for cross-cutting concerns
+- Create custom decorators for repeated patterns
+
+## MCP (Model Context Protocol) Implementation
+- Follow the MCP specification for interoperability
+- Implement proper WebSocket handling for real-time communication
+- Structure message payloads according to MCP standards
+- Handle reconnection logic for WebSocket connections
+- Implement message queuing for reliability
+- Use proper serialization/deserialization for messages
+- Implement heartbeat mechanisms for connection health
+
+## Project Structure
+project/
+├── src/
+│ ├── config/ # Configuration files and environment setup
+│ ├── controllers/ # Request handlers
+│ ├── dto/ # Data Transfer Objects
+│ ├── interfaces/ # TypeScript interfaces
+│ ├── services/ # Business logic
+│ ├── models/ # Data models
+│ ├── utils/ # Utility functions
+│ ├── middleware/ # Custom middleware
+│ ├── mcp/ # MCP-specific implementation
+│ │ ├── client.ts # MCP client implementation
+│ │ ├── server.ts # MCP server implementation
+│ │ ├── types.ts # MCP-specific types
+│ │ └── handlers/ # MCP message handlers
+│ └── main.ts # Application entry point
+├── test/ # Tests
+├── dist/ # Compiled output
+├── node_modules/ # Dependencies
+├── package.json # Package configuration
+├── tsconfig.json # TypeScript configuration
+└── README.md # Documentation
+
+## WebSocket Communication
+- Use `ws` or `socket.io` for WebSocket connections
+- Implement proper message framing and parsing
+- Handle connection errors and reconnection logic
+- Implement message acknowledgment mechanisms
+- Use proper event handlers for WebSocket lifecycle
+
+## Error Handling
+- Implement centralized error handling
+- Use custom error classes for different error types
+- Include proper error codes and messages
+- Log errors with appropriate severity levels
+- Return consistent error responses to clients
+
+## Testing Strategy & Test Interfaces
+- **Beyond Unit Tests:** While unit tests are crucial for isolating logic, supplement them with a strategy focused on functional verification through dedicated test interfaces.
+- **Design Test Interfaces:** For significant features, modules, or services, design specific **Test Interfaces**. These act as controlled entry points for functional testing.
+- **Granularity:** Define test interfaces at appropriate levels:
+    - **Entry Point Level:** For testing end-to-end workflows initiated by the user or system (e.g., processing a full request, running a batch job).
+    - **Module/Service Level:** For verifying the public contract and core functionality of a specific module or service (e.g., testing `WeChatMCPService`'s message retrieval, testing `SummaryService`'s summarization logic).
+    - **Functional Level:** For testing specific, reusable pieces of logic or algorithms within a service, especially complex ones (e.g., testing message formatting utilities, testing configuration merging logic).
+- **Focus on Functionality & Visualization:** The primary goal of these interfaces is to enable **functional testing** and **direct result visualization**. They should allow developers to:
+    - Easily invoke a specific piece of functionality with controlled inputs.
+    - Directly observe the outputs (return values, side effects like file creation, log entries).
+- **Define Expected I/O:** Clearly document or structure the test interface calls to show **Expected Inputs** and **Expected Outputs**. This allows for quick verification against requirements. Example:
+  ```typescript
+  // Interface definition might include JSDoc explaining expected I/O
+  interface McpServiceTest {
+    /**
+     * Tests retrieving messages by date.
+     * Input: groupName (string), date (string 'yyyy-MM-dd')
+     * Output: Promise<Array<MessageObject>> - Array should contain messages for that date.
+     */
+    getMessagesByDate(groupName: string, date: string): Promise<any[]>;
+  }
+  ```
+- **Implementation:** These interfaces can be implemented within dedicated test scripts (`*.test.ts`, `*.spec.ts`) or helper classes, callable via test runners or simple node scripts.
+- **Keep it Practical:** Focus on interfaces that provide meaningful insights into the functionality, avoiding excessive granularity that mirrors unit tests. The goal is intuitive functional verification, not exhaustive unit coverage (which is handled separately).
+- **Test Data:** Use fixtures or factories to generate consistent test data. Store larger test data sets in separate files (e.g., `src/test/fixtures/sample-messages.json`).
+
+## Deployment and DevOps
+- Use Docker for containerization
+- Implement CI/CD pipelines
+- Configure proper health checks
+- Implement monitoring and alerting
+- Use environment-specific configurations
+
+## Security Considerations
+- Implement proper authentication and authorization
+- Validate all input data
+- Use HTTPS for all communications
+- Implement rate limiting
+- Follow security best practices for Node.js
+- Keep dependencies updated
+
+## Performance Optimization
+- Implement proper caching strategies
+- Use connection pooling for databases
+- Optimize WebSocket message sizes
+- Implement pagination for large data sets
+- Use worker threads for CPU-intensive tasks
+- Implement proper load balancing
+
+## MCP Specific Guidelines
+- Follow the MCP specification closely
+- Implement proper versioning for MCP messages
+- Handle disconnections and reconnections gracefully
+- Implement proper error propagation through MCP
+- Use proper serialization formats (JSON)
+- Implement proper logging for MCP messages

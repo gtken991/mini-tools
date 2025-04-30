@@ -1,0 +1,195 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: Python Development Guide for MCP and General Applications
+globs:
+  - "**/*.py"
+  - "**/requirements.txt"
+  - "**/pyproject.toml"
+  - "**/setup.py"
+  - "**/Pipfile"
+  - "**/Pipfile.lock"
+alwaysApply: false
+---
+
+# Python Development Guide for MCP and General Applications
+
+## Key Principles
+- Follow Python's "Zen of Python" (PEP 20) principles
+- Write clean, readable, and maintainable code
+- Use proper type hints (PEP 484) for better IDE support and code clarity
+- Follow a modular architecture with clear separation of concerns
+- Implement comprehensive error handling and logging
+- Follow PEP 8 style guide for code formatting
+
+## Python Best Practices
+- Use Python 3.8+ for modern language features
+- Use virtual environments for dependency isolation
+- Implement type hints with `typing` module
+- Use docstrings for documentation (Google or NumPy style)
+- Leverage Python's built-in features and standard library
+- Use context managers (`with` statements) for resource management
+- Follow the principle of "Explicit is better than implicit"
+
+## Python Project Structure
+project/
+├── src/ # Main package directory
+│ ├── init.py # Package initialization
+│ ├── config/ # Configuration handling
+│ ├── models/ # Data models and schemas
+│ ├── services/ # Business logic
+│ ├── utils/ # Utility functions
+│ ├── api/ # API endpoints (if applicable)
+│ └── main.py # Application entry point
+├── tests/ # Test directory
+│ ├── init.py
+│ ├── test_models.py
+│ ├── test_services.py
+│ └── fixtures/ # Test data
+├── docs/ # Documentation
+├── scripts/ # Utility scripts
+├── .env.example # Example environment variables
+├── requirements.txt # Dependencies
+├── requirements-dev.txt # Development dependencies
+├── pyproject.toml # Project metadata and config
+└── README.md # Project documentation
+
+
+## Configuration Management
+- **Environment Variables:** Use environment variables via libraries like `python-dotenv` for sensitive information. Store in `.env` files for development. **Do not commit `.env` files to version control.**
+- **Configuration Files:** Use YAML, JSON, or TOML for configuration files. Consider `pydantic` for schema validation.
+- **Environment-Specific Config:** Support different configurations for different environments (development, testing, production) through naming conventions or config parameters.
+- **Test Configuration:** Provide separate test configurations or fixtures to isolate test environments.
+- **Config Validation:** Validate configuration at startup using schema validation (e.g., with `pydantic`) to catch errors early.
+
+## Dependency Management
+- Use `requirements.txt` or `poetry` or `pipenv` for dependency management
+- Pin specific versions to ensure reproducibility
+- Use `requirements-dev.txt` for development-only dependencies
+- Consider using a dependency scanner for security vulnerabilities
+
+## State Management
+- **Explicit State:** Use classes or dedicated state containers to manage application state.
+- **Immutability:** Prefer immutable data structures or use special containers like pydantic models with pydantic's `frozen=True` option.
+- **Concurrency Awareness:** Be careful with shared state in concurrent environments. Use appropriate synchronization primitives.
+- **State Persistence:** Consider how state will be persisted and restored (e.g., to/from databases, files).
+
+## HTTP Communication
+- Use `requests` for client operations or `httpx` for async HTTP
+- Use `FastAPI`, `Flask`, or `Django` for server implementations
+- Implement proper error handling and status code checking
+- Use connection pooling for performance with high volume requests
+- Implement retry logic with exponential backoff for unreliable services
+
+## WebSocket Communication
+- Use `websockets` or `websocket-client` libraries
+- Implement proper exception handling for connection issues
+- Use async/await patterns for WebSocket communication
+- Implement heartbeat mechanisms to detect disconnections
+- Structure message formats consistently (e.g., JSON with standard fields)
+
+## Error Handling
+- Use Python's exception handling mechanisms (`try/except`) effectively
+- Create custom exception classes for different error types
+- Provide meaningful error messages with context
+- Log exceptions with appropriate severity levels
+- Return consistent error responses from APIs or services
+
+## Testing Strategy & Test Interfaces
+- **Use Pytest:** Leverage the pytest framework for testing, with its fixtures, parameterization, and plugins.
+- **Test Granularity:** Write unit tests (for functions, classes), integration tests (for services), and end-to-end tests (for complete workflows) as appropriate.
+- **Design Test Interfaces:** Create clear test interfaces for major functionality:
+    - **Entry Point Level:** Test scripts that exercise complete application workflows
+    - **Module Level:** Test functions for testing specific service or module functionality
+    - **Function Level:** Tests for core algorithms or utility functions
+- **Visualization & Feedback:** Create test mechanisms that provide clear visual feedback:
+```python
+# Example test interface with clear input/output
+def test_message_processor(messages: list, config: dict) -> dict:
+    """
+    Test message processing functionality.
+    
+    Input:
+        messages: List of message dictionaries to process
+        config: Configuration dictionary for the processor
+        
+    Output:
+        Dictionary with:
+        - processed_count: Number of messages processed
+        - success_count: Number of successful operations
+        - error_count: Number of errors
+        - results: List of processed message results
+    """
+    processor = MessageProcessor(config)
+    results = []
+    errors = []
+    
+    for msg in messages:
+        try:
+            result = processor.process_message(msg)
+            results.append(result)
+        except Exception as e:
+            errors.append({"message": msg, "error": str(e)})
+    
+    return {
+        "processed_count": len(messages),
+        "success_count": len(results),
+        "error_count": len(errors),
+        "results": results,
+        "errors": errors
+    }
+```
+- **Mocking:** Use `unittest.mock` or `pytest-mock` to isolate components for testing.
+- **Test Data:** Create fixtures or factory functions to generate test data. Store complex test data in files (JSON, YAML, etc.) or in fixture functions.
+- **Assertions:** Make assertions specific to verify both the data and behavior correctness.
+
+## Logging
+- Use the built-in `logging` module
+- Configure log formatting for readability and parsing
+- Log at appropriate levels (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+- Include contextual information in log messages
+- Consider structured logging for machine parsing
+
+## Database Access
+- Use ORMs like SQLAlchemy or Django ORM for database interactions
+- Implement connection pooling for efficiency
+- Use migrations for database schema changes
+- Implement proper transaction management
+- Consider using asynchronous database libraries for high-concurrency applications
+
+## Performance Optimization
+- Profile code to identify bottlenecks (`cProfile`, `timeit`)
+- Use appropriate data structures for operations
+- Consider caching frequently accessed data
+- Use asynchronous programming (`asyncio`) for I/O-bound operations
+- Use multiprocessing for CPU-bound tasks
+- Be mindful of memory usage, especially with large datasets
+
+## Security Considerations
+- Sanitize all input data
+- Use parameterized queries to prevent SQL injection
+- Implement proper authentication and authorization
+- Keep dependencies updated to avoid security vulnerabilities
+- Follow the principle of least privilege
+- Use HTTPS for all external communications
+- Securely handle sensitive data and secrets
+
+## MCP (Model Context Protocol) Implementation
+- Follow the MCP specification precisely
+- Implement proper WebSocket handling for real-time communication
+- Structure message payloads according to MCP standards
+- Handle reconnection logic for WebSocket connections
+- Implement message queuing for reliability
+- Use proper serialization/deserialization (typically JSON)
+- Implement heartbeat mechanisms for connection health monitoring
+
+## Deployment Best Practices
+- Use containerization (Docker) for consistent environments
+- Implement CI/CD pipelines for automated testing and deployment
+- Configure proper health checks and monitoring
+- Use environment variables for configuration in deployed environments
+- Implement graceful shutdown handling
+- Consider using serverless platforms for appropriate workloads
